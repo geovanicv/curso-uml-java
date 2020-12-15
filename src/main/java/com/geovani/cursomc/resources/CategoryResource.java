@@ -1,28 +1,27 @@
 package com.geovani.cursomc.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geovani.cursomc.domain.Category;
+import com.geovani.cursomc.services.CategoryService;
 
 @RestController
 @RequestMapping(value="/categories")
 public class CategoryResource {
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Category> listar() {
+	@Autowired
+	private CategoryService service;
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
+		Category obj = service.find(id);
 		
-		Category cat1 = new Category(1, "Informática");
-		Category cat2 = new Category(2, "Escritório");
+		return ResponseEntity.ok().body(obj);
 		
-		List<Category> list = new ArrayList<>();
-		list.add(cat1);
-		list.add(cat2);
-		
-		return list;
 	}
 }
