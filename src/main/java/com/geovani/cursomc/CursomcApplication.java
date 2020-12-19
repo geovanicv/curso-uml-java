@@ -7,14 +7,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.geovani.cursomc.domain.Address;
 import com.geovani.cursomc.domain.Category;
 import com.geovani.cursomc.domain.City;
+import com.geovani.cursomc.domain.Client;
 import com.geovani.cursomc.domain.Product;
 import com.geovani.cursomc.domain.State;
+import com.geovani.cursomc.domain.enums.ClientType;
+import com.geovani.cursomc.repositories.AddressRepository;
 import com.geovani.cursomc.repositories.CategoryRepository;
 import com.geovani.cursomc.repositories.CityRepository;
+import com.geovani.cursomc.repositories.ClientRepository;
 import com.geovani.cursomc.repositories.ProductRepository;
 import com.geovani.cursomc.repositories.StateRepository;
+
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
@@ -30,6 +36,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CityRepository cityRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -67,6 +79,18 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		stateRepository.saveAll(Arrays.asList(state1, state2));
 		cityRepository.saveAll(Arrays.asList(city1, city2, city3));
+		
+		Client cli1 = new Client(null, "Maria Silva", "maria@gmail.com", "36378912345", ClientType.PESSOAFISICA);
+		cli1.getPhones().addAll(Arrays.asList("3216545", "54684213"));
+		
+		Address e1 = new Address(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, city1);
+		Address e2 = new Address(null, "Avenida Matos", "105", "Sala 800", "Centro", "5645431", cli1, city2);
+		
+		cli1.getAddresses().addAll(Arrays.asList(e1, e2));
+		
+		clientRepository.save(cli1);
+		addressRepository.saveAll(Arrays.asList(e1, e2));
+		
 	}
 
 }
