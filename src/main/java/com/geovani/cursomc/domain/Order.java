@@ -2,6 +2,8 @@ package com.geovani.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,6 +35,8 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "address_delivery_id")
 	private Address addressDelivery;
+	
+	private Set<ItemOrder> items = new HashSet<>();
 
 	public Order() {
 	}
@@ -84,6 +88,14 @@ public class Order implements Serializable {
 	public void setAddressDelivery(Address addressDelivery) {
 		this.addressDelivery = addressDelivery;
 	}
+	
+	public Set<ItemOrder> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<ItemOrder> items) {
+		this.items = items;
+	}
 
 	@Override
 	public int hashCode() {
@@ -109,7 +121,5 @@ public class Order implements Serializable {
 			return false;
 		return true;
 	}
-
-
 
 }
