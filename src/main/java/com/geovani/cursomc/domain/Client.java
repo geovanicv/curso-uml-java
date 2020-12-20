@@ -36,6 +36,8 @@ public class Client implements Serializable {
 	@ElementCollection
 	@CollectionTable(name = "PHONE")
 	private Set<String> phones = new HashSet<>();
+	
+	private List<Order> orders = new ArrayList<>();
 
 	public Client() {}
 
@@ -80,11 +82,11 @@ public class Client implements Serializable {
 		this.cpfOrCnpj = cpfOrCnpj;
 	}
 
-	public ClientType getClientType() {
+	public ClientType getType() {
 		return ClientType.toEnum(type);
 	}
 
-	public void setClientType(ClientType clientType) {
+	public void setType(ClientType clientType) {
 		this.type = clientType.getCod();
 	}
 
@@ -103,6 +105,41 @@ public class Client implements Serializable {
 	public void setPhones(Set<String> phones) {
 		this.phones = phones;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 }
