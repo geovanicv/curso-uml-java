@@ -2,13 +2,26 @@ package com.geovani.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
 import com.geovani.cursomc.domain.enums.PaymentStatus;
 
+@Entity
 public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private PaymentStatus status;
 	
+	@Id
+	private Integer id;
+	
+	private Integer status;
+	
+	@OneToOne
+	@JoinColumn(name = "order_id")
+	@MapsId
 	private Order order;
 	
 	public Payment() {}
@@ -16,7 +29,7 @@ public class Payment implements Serializable {
 	public Payment(Integer id, PaymentStatus status, Order order) {
 		super();
 		this.id = id;
-		this.status = status;
+		this.status = status.getCod();
 		this.order = order;
 	}
 
@@ -29,11 +42,11 @@ public class Payment implements Serializable {
 	}
 
 	public PaymentStatus getStatus() {
-		return status;
+		return PaymentStatus.toEnum(status);
 	}
 
 	public void setStatus(PaymentStatus status) {
-		this.status = status;
+		this.status = status.getCod();
 	}
 
 	public Order getOrder() {

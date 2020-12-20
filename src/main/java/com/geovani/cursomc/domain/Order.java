@@ -3,26 +3,40 @@ package com.geovani.cursomc.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "order_table")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date instant;
-	
-	private Payment payment;
-	
-	private Client client;
-	
-	private Address deliveryAddress;
 
-	public Order() {}
-	
-	public Order(Integer id, Date instant, Payment payment, Client client, Address deliveryAddress) {
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
+	private Payment payment;
+
+	private Client client;
+
+	private Address addressDelivery;
+
+	public Order() {
+	}
+
+	public Order(Integer id, Date instant, Client client, Address addressDelivery) {
 		super();
 		this.id = id;
 		this.instant = instant;
-		this.payment = payment;
 		this.client = client;
-		this.deliveryAddress = deliveryAddress;
+		this.addressDelivery = addressDelivery;
 	}
 
 	public Integer getId() {
@@ -33,36 +47,36 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-	public Date getInstant() {
+	public Date getInstante() {
 		return instant;
 	}
 
-	public void setInstant(Date instant) {
-		this.instant = instant;
+	public void setInstante(Date instante) {
+		this.instant = instante;
 	}
 
-	public Payment getPayment() {
+	public Payment getPagamento() {
 		return payment;
 	}
 
-	public void setPayment(Payment payment) {
+	public void setPagamento(Payment payment) {
 		this.payment = payment;
 	}
 
-	public Client getClient() {
+	public Client getCliente() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setCliente(Client client) {
 		this.client = client;
 	}
 
-	public Address getAddress() {
-		return deliveryAddress;
+	public Address getEnderecoDeEntrega() {
+		return addressDelivery;
 	}
 
-	public void setAddress(Address deliveryAddress) {
-		this.deliveryAddress = deliveryAddress;
+	public void setEnderecoDeEntrega(Address addressDelivery) {
+		this.addressDelivery = addressDelivery;
 	}
 
 	@Override
@@ -89,5 +103,7 @@ public class Order implements Serializable {
 			return false;
 		return true;
 	}
-		
+
+
+
 }

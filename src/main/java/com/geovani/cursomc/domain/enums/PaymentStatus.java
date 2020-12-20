@@ -21,7 +21,7 @@ public enum PaymentStatus {
 		return description;
 	}
 	
-	public PaymentStatus toEnum(Integer cod) {
+	public static PaymentStatus toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
 		}
