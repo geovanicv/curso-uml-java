@@ -2,8 +2,11 @@ package com.geovani.cursomc.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.geovani.cursomc.domain.enums.PaymentStatus;
 
+@Entity
 public class PaymentWithTicket extends Payment {
 	private static final long serialVersionUID = 1L;
 	

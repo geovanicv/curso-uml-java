@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,8 +26,12 @@ public class Order implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
 	private Payment payment;
 
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 
+	@ManyToOne
+	@JoinColumn(name = "address_delivery_id")
 	private Address addressDelivery;
 
 	public Order() {
@@ -55,27 +61,27 @@ public class Order implements Serializable {
 		this.instant = instante;
 	}
 
-	public Payment getPagamento() {
+	public Payment getPayment() {
 		return payment;
 	}
 
-	public void setPagamento(Payment payment) {
+	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
 
-	public Client getCliente() {
+	public Client getClient() {
 		return client;
 	}
 
-	public void setCliente(Client client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 
-	public Address getEnderecoDeEntrega() {
+	public Address getAddressDelivery() {
 		return addressDelivery;
 	}
 
-	public void setEnderecoDeEntrega(Address addressDelivery) {
+	public void setAddressDelivery(Address addressDelivery) {
 		this.addressDelivery = addressDelivery;
 	}
 
