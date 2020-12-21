@@ -12,6 +12,7 @@ import com.geovani.cursomc.domain.Address;
 import com.geovani.cursomc.domain.Category;
 import com.geovani.cursomc.domain.City;
 import com.geovani.cursomc.domain.Client;
+import com.geovani.cursomc.domain.ItemOrder;
 import com.geovani.cursomc.domain.Order;
 import com.geovani.cursomc.domain.Payment;
 import com.geovani.cursomc.domain.PaymentWithCreditCard;
@@ -24,6 +25,7 @@ import com.geovani.cursomc.repositories.AddressRepository;
 import com.geovani.cursomc.repositories.CategoryRepository;
 import com.geovani.cursomc.repositories.CityRepository;
 import com.geovani.cursomc.repositories.ClientRepository;
+import com.geovani.cursomc.repositories.ItemOrderRepository;
 import com.geovani.cursomc.repositories.OrderRepository;
 import com.geovani.cursomc.repositories.PaymentRepository;
 import com.geovani.cursomc.repositories.ProductRepository;
@@ -56,6 +58,9 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ItemOrderRepository itemOrderRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -121,6 +126,18 @@ public class CursomcApplication implements CommandLineRunner {
 		orderRepository.saveAll(Arrays.asList(order1, order2));
 		paymentRepository.saveAll(Arrays.asList(pagto1, pagto2));
 		
+		ItemOrder ip1 = new ItemOrder(order1, p1, 0.00, 1, 2000.00);
+		ItemOrder ip2 = new ItemOrder(order1, p3, 0.00, 2, 80.00);
+		ItemOrder ip3 = new ItemOrder(order2, p2, 100.00, 1, 800.00);
+		
+		order1.getItems().addAll(Arrays.asList(ip1, ip2));
+		order2.getItems().addAll(Arrays.asList(ip3));
+		
+		p1.getItems().addAll(Arrays.asList(ip1));
+		p2.getItems().addAll(Arrays.asList(ip3));
+		p3.getItems().addAll(Arrays.asList(ip2));
+		
+		itemOrderRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }
