@@ -1,6 +1,10 @@
-# Exercícios e Respostas
+# Modelagem Conceitual com Diagrama de Classes da UML
 
-## Exercício 1)
+## Exercícios e Respostas
+
+## Capítulo: Associações e multiplicidade de papéis
+
+### Exercício 1)
 Deseja-se construir um sistema para manter um registro de artistas
 musicais e seus álbuns. Cada álbum possui várias músicas, as quais poderão ser consultadas pelo
 sistema. O sistema também deve permitir a busca de artistas por nome ou nacionalidade. O sistema
@@ -11,7 +15,7 @@ distinção. Já a música pode possuir um ou mais autores e intérpretes (todos
 ### Resposta:
 ![Exercicio1](./screenshots/exercicio1.png)
 
-## Exercício 2)
+### Exercício 2)
 Deseja-se construir um sistema para gerenciar as informações de
 campeonatos de handebol, que ocorrem todo ano. Deseja-se saber nome, data de nascimento, gênero e
 altura dos jogadores de cada time, bem como qual deles é o capitão de cada time. Cada partida do
@@ -24,7 +28,7 @@ lugar por saldo de vitórias e em segundo lugar por saldo de gols.
 ### Resposta:
 ![Exercicio2](./screenshots/exercicio2.png)
 
-## Exercício 3)
+### Exercício 3)
 Deseja-se fazer um sistema de rede social. Nesta rede social, os usuários podem seguir e
 ser seguidos por outros usuários. O perfil do usuário deve permitir cadastrar nome, email, data de
 nascimento, website, gênero, telefone e foto do perfil. Os usuários podem fazer postagens de texto em
@@ -35,7 +39,7 @@ organizadas em álbuns, sendo que cada álbum possui um título.
 ### Resposta:
 ![Exercicio1](./screenshots/exercicio3.png)
 
-## Exercício 4)
+### Exercício 4)
 Deseja-se construir um sistema para gerenciar as informações dos participantes das
 atividades de um evento acadêmico. As atividades deste evento podem ser, por exemplo, palestras,
 cursos, oficinas práticas, etc. Cada atividade que ocorre possui nome, descrição, preço, e pode ser
@@ -46,7 +50,7 @@ participante, deseja-se cadastrar seu nome e email.
 ### Resposta:
 ![Exercicio1](./screenshots/exercicio4.png)
 
-## Exercício 5)
+### Exercício 5)
 Deseja-se fazer um sistema para manter dados de cidades (nome, estado, website), onde
 cada cidade possui um ou mais restaurantes (nome, valor da refeição) e hotéis (nome, valor da diária).
 Além disso, deseja-se registrar pacotes turísticos vendidos. Para registrar um pacote turístico, deve-se
@@ -57,5 +61,7 @@ quantas refeições por dia serão consumidas.
 ### Resposta:
 ![Exercicio1](./screenshots/exercicio5.png)
 
+---
+Made with :purple_heart: by Geovani Cavalcante :wave: [Get in touch!](https://www.linkedin.com/in/geovani-cv/)
 
 
